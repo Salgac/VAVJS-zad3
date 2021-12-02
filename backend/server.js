@@ -179,7 +179,7 @@ app.put('/api/advert/image', bodyParser.raw({
 });
 
 // start app
-app.listen(8080, () => {
+module.exports = app.listen(8080, () => {
 	console.log("App listening!");
 
 	//init database
