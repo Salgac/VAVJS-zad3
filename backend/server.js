@@ -31,10 +31,10 @@ class Order {
 }
 
 class Advert {
-	constructor() {
-		this.image;
-		this.href;
-		this.counter;
+	constructor(image, href) {
+		this.image = image;
+		this.href = href;
+		this.counter = 0;
 	}
 }
 
@@ -48,6 +48,8 @@ function initDatabase() {
 	products.push(new Product(0, "Kábel", "kabel.jpg", 4.99));
 	products.push(new Product(1, "Slúchadlá", "phones.jpg", 12.59));
 	products.push(new Product(2, "Telefon", "phone.jpg", 39.99));
+
+	advert = new Advert("advert.jpg", "https://github.com/Salgac/");
 }
 
 // api
@@ -135,6 +137,45 @@ app.put('/api/order/:id', bodyParser.json(), (req, res) => {
 	}
 	else
 		res.status(404).json({ error: `Order with id ${req.params.id} does not exist.` });
+});
+
+// advert
+app.get('/api/advert', (req, res) => {
+	console.log("GET '/api/advert'");
+
+	advert.counter++;
+	res.json(advert);
+});
+
+app.get('/api/advert/image', (req, res) => {
+	console.log("GET '/api/advert/image'");
+
+	const path = require('path');
+	res.sendFile(path.join(__dirname, "images/" + advert.image));
+});
+
+app.put('/api/advert', bodyParser.json(), (req, res) => {
+	console.log("PUT '/api/advert'");
+
+	advert.href = req.body.href;
+
+	res.json({});
+});
+
+app.put('/api/advert/image', bodyParser.raw({
+	type: 'image/jpeg',
+	limit: '10mb',
+}), (req, res) => {
+	console.log("PUT '/api/advert/image'");
+
+	const fs = require("fs");
+	fs.writeFile("images/advert.jpg", req.body, (err) => {
+		if (err)
+			console.log(err);
+	})
+	advert.image = "advert.jpg";
+
+	res.json({});
 });
 
 // start app
