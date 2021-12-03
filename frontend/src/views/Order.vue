@@ -1,8 +1,13 @@
 <template>
   <div class="order">
     <h1>Stránka objednávky</h1>
-    <p>{{ products }}</p>
+    <Cart
+      v-bind:cart="JSON.parse(cart)"
+      v-bind:products="JSON.parse(products)"
+      v-bind:readonly="true"
+    />
     <div class="form">
+      <h3>Formulár</h3>
       <input type="email" v-model="customer.email" placeholder="Email" /> <br />
       <input type="text" v-model="customer.name" placeholder="Meno" /> <br />
       <input type="text" v-model="customer.address" placeholder="Ulica" />
@@ -28,15 +33,20 @@
 </template>
 
 <script>
+import Cart from "@/components/Cart.vue";
+
 import { sendRequestWithData } from "@/library/apiRequest";
 import { OrderRequest } from "@/library/apiRequest";
 
 export default {
   name: "Order",
   props: {
+    cart: String,
     products: String,
   },
-  components: {},
+  components: {
+    Cart,
+  },
   data() {
     return {
       customer: {
@@ -55,7 +65,7 @@ export default {
       this.customer.address += " " + this.houseNumber;
       var json = {
         customer: JSON.parse(JSON.stringify(this.customer)),
-        products: JSON.parse(this.products),
+        products: JSON.parse(this.cart),
       };
 
       //post data

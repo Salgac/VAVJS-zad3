@@ -45,11 +45,11 @@ export default {
 
       this.$router.push({
         name: "Order",
-        params: { products: jsonString },
+        params: { cart: jsonString, products: JSON.stringify([this.product]) },
       });
     },
     addToBasket() {
-      console.log("Basket " + this.id);
+      this.$emit("addedToCart", { id: this.id, pcs: this.pcs });
     },
   },
 };
