@@ -23,7 +23,8 @@ class Customer {
 }
 
 class Order {
-	constructor(customer, products) {
+	constructor(id, customer, products) {
+		this.id = id;
 		this.customer = customer;
 		this.products = products;
 		this.state = "Created";
@@ -123,6 +124,7 @@ app.post('/api/order', bodyParser.json(), (req, res) => {
 
 	customers.push(newCustomer);
 	var newOrder = new Order(
+		orders.length,
 		newCustomer.id,
 		products,
 	)
@@ -193,6 +195,7 @@ app.put('/api/advert/image', bodyParser.raw({
 app.use((req, res, next) => {
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Headers', '*');
+	res.header('Access-Control-Allow-Methods', '*');
 	next();
 })
 
