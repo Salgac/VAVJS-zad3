@@ -19,5 +19,27 @@ export async function sendRequest(requestType, extra) {
 	return type === "json" ? await res.json() : res;
 }
 
+export async function sendRequestWithData(requestType, data) {
+	var page = "";
+	var method;
+	switch (requestType) {
+		case OrderRequest:
+			page = "order";
+			method = "POST";
+			break;
+	}
+
+	const res = await fetch(url + page, {
+		mode: 'cors',
+		method: method,
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data)
+	});
+	return await res.json();
+}
+
 export const ProductRequest = Symbol();
 export const ProductImageRequest = Symbol();
+export const OrderRequest = Symbol();

@@ -4,6 +4,7 @@
     <p>{{ name }}</p>
     <p>{{ price }}€</p>
 
+    <input type="number" placeholder="ks" v-model="pcs" min="1" />
     <button v-on:click="orderItem()">Objednať</button>
     <button v-on:click="addToBasket()">Do košíka</button>
   </div>
@@ -24,6 +25,7 @@ export default {
       name: "",
       image: "",
       price: 0.0,
+      pcs: 1,
     };
   },
   async mounted() {
@@ -39,7 +41,12 @@ export default {
   },
   methods: {
     orderItem() {
-      console.log("Order " + this.id);
+      var jsonString = JSON.stringify([{ id: this.id, pcs: this.pcs }]);
+
+      this.$router.push({
+        name: "Order",
+        params: { products: jsonString },
+      });
     },
     addToBasket() {
       console.log("Basket " + this.id);
@@ -60,5 +67,12 @@ button {
   padding-right: 20px;
   height: 40px;
   margin: 10px;
+}
+
+input {
+  height: 33px;
+  width: 40px;
+  margin: 10px;
+  font-size: 120%;
 }
 </style>
