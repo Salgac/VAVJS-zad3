@@ -2,7 +2,10 @@
   <div class="fin">
     <h1>Poďakovanie</h1>
     <h3>Ďakujeme za objednávku</h3>
-
+    <br />
+    <router-link :to="{ name: 'Home' }"> Späť na hlavnú stránku </router-link>
+    <br />
+    <br />
     <a v-bind:href="advert.href">
       <img v-bind:src="image" height="400" />
     </a>
