@@ -12,6 +12,14 @@ export async function sendRequest(requestType, extra) {
 			page = `products/${extra}/image`;
 			type = "image";
 			break;
+		case AdvertRequest:
+			page = `advert`;
+			type = "json";
+			break;
+		case AdvertImageRequest:
+			page = `advert/image`;
+			type = "image";
+			break;
 	}
 
 	const res = await fetch(url + page, { mode: 'cors' });
@@ -43,3 +51,5 @@ export async function sendRequestWithData(requestType, data) {
 export const ProductRequest = Symbol();
 export const ProductImageRequest = Symbol();
 export const OrderRequest = Symbol();
+export const AdvertRequest = Symbol();
+export const AdvertImageRequest = Symbol();

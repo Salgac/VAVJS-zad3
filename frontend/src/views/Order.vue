@@ -62,7 +62,9 @@ export default {
       await sendRequestWithData(OrderRequest, json);
 
       //redirect
-      //TODO
+      this.$router.push({
+        name: "Fin",
+      });
     },
   },
 };
