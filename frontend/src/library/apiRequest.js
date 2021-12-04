@@ -20,6 +20,14 @@ export async function sendRequest(requestType, extra) {
 			page = `advert/image`;
 			type = "image";
 			break;
+		case OrderRequest:
+			page = "orders";
+			type = "json";
+			break;
+		case CustomerRequest:
+			page = "customers";
+			type = "json";
+			break;
 	}
 
 	const res = await fetch(url + page, { mode: 'cors' });
@@ -27,13 +35,30 @@ export async function sendRequest(requestType, extra) {
 	return type === "json" ? await res.json() : res;
 }
 
-export async function sendRequestWithData(requestType, data) {
+export async function sendRequestWithData(requestType, data, extra) {
 	var page = "";
 	var method;
+	var ctype = 'application/json';
 	switch (requestType) {
 		case OrderRequest:
 			page = "order";
 			method = "POST";
+			data = JSON.stringify(data);
+			break;
+		case OrderStateRequest:
+			page = "order/" + extra;
+			method = "PUT";
+			data = JSON.stringify(data);
+			break;
+		case AdvertRequest:
+			page = `advert`;
+			method = "PUT";
+			data = JSON.stringify(data);
+			break;
+		case AdvertImageRequest:
+			page = `advert/image`;
+			method = "PUT";
+			ctype = "image/jpeg";
 			break;
 	}
 
@@ -41,9 +66,9 @@ export async function sendRequestWithData(requestType, data) {
 		mode: 'cors',
 		method: method,
 		headers: {
-			'Content-Type': 'application/json',
+			'Content-Type': ctype,
 		},
-		body: JSON.stringify(data)
+		body: data,
 	});
 	return await res.json();
 }
@@ -51,5 +76,7 @@ export async function sendRequestWithData(requestType, data) {
 export const ProductRequest = Symbol();
 export const ProductImageRequest = Symbol();
 export const OrderRequest = Symbol();
+export const OrderStateRequest = Symbol();
 export const AdvertRequest = Symbol();
 export const AdvertImageRequest = Symbol();
+export const CustomerRequest = Symbol();
