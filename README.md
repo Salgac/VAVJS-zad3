@@ -2,6 +2,7 @@
 
 Urobte jednoduchu verziu e-shopu pre elektroniku. Pouzite DB system. Pouzite JS UI framework. Pouzite Docker a spravte jednoduche testy.
 
+## Zadanie
 
 | #     |                                                                                                                    |        |         |
 | ----- | ------------------------------------------------------------------------------------------------------------------ | ------ | ------- |
@@ -24,7 +25,7 @@ Urobte jednoduchu verziu e-shopu pre elektroniku. Pouzite DB system. Pouzite JS 
 | c     | viac kusov a viac produktov                                                                                        | 1      | &#9745; |
 | SUM   |                                                                                                                    | 25     | 20      |
  
-## DB
+### DB
 RDB: MySQL, PostgreSQL, MariaDB, ??? - povoleny wrapper sequalize, inak sa opytajte (ziadne dokumentove DB, nie sqlite)\
 Produkty: id, nazov, obrazok, cena\
 Zakaznici: id, e-mail (unikatny), meno, ulica, cislo, mesto , psc\
@@ -32,9 +33,23 @@ Objednavky: zakaznik+produkty + stav objednavky\
 Reklama: link,\
 Seed iba na produkty, 3ks - musia byt v JS "CREATE TABLE produkty", INSERT 3x produkty
  
-## Rozhranie
+### Rozhranie
 JS framework Angular, React, Vue alebo Svelte\
 stranka produktov - zobrazit produkty: nazov, obrazok, cena, tlacidlo objednania\
 stranka objednavky - formular pre zadanie udajov objednavajuceho\
 podakovanie - stranka s "dakujeme za objednavku" a s reklamou s pocitadlom\
 stranka pre admina: tabulka objednavok (s ich obsahom) a s tlacidlom zaplatenia; reklama s moznostou zmeny linkov (img + href) a pocitadlo
+
+## Vypracovanie
+
+Zadanie bolo vypracovane podla poziadaviek, pre vsetky vyssie uvedene body v tabulke s oznacenim &#9745;. Pri prazdnom oznaceni (&#9744;), ide o body zadania ktore som sa rozhodol neimplementovat, pre casove a psychicke dovody.
+
+### Spustenie
+
+Pre spustenie mimo dockeru som vytvoril shell scripty. Pre spustenie testu je potrebne spustit script `run-test.sh`.
+
+### Par dovysvetliviek ku vybranym bodom:
+
+- 1 - na pocitaci mam nejaky problem s dockerom, nepomohlo ani preinstalovavanie, ani nic ine. Nebol som teda schopny rozbehat databazu, ani tu z p8. Pre vypracovanie ulohy som sa teda rozhodol, ze namiesto databazy pouzijem cisto js objekty a polia, s ktorymi bude backend pracovat.
+- 2 - hlavna stranka dostupna na `/`, admin interface na `/admin`
+- 4 - pri produkte je potrebne vybrat mnozstvo a kliknut na tlacidlo. Je takisto mozne objednat "urychlene" jeden produkt, kliknutim na tlacidlo Objednat pri produkte.
