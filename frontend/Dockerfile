@@ -1,4 +1,4 @@
-FROM node
+FROM node:16
 
 WORKDIR /app
 
@@ -11,5 +11,7 @@ COPY . .
 ENV PORT=8080
 
 EXPOSE 8080
+
+CMD ["export", "NODE_OPTIONS=--openssl-legacy-provider"]
 
 CMD ["npm", "run", "serve"]

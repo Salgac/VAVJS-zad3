@@ -15,14 +15,14 @@ Urobte jednoduchu verziu e-shopu pre elektroniku. Pouzite DB system. Pouzite JS 
 | b     | stranka objednavky                                                                                                 | 3      | &#9745; |
 | c     | podakovanie (reklama s pocitadlom)                                                                                 | 1      | &#9745; |
 | d     | admin rozrhanie (tabulka objednavok so stavom a moznostou zmeny stavu, zmena reklami a zobrazenie stavu pocitadla) | 3      | &#9745; |
-| **3** | **Docker a testing**                                                                                               | SUM 5  |         |
-| a     | docker-compose a Dockerfiles                                                                                       | 1      |         |
+| **3** | **Docker a testing**                                                                                               | SUM 5  | &#9745; |
+| a     | docker-compose a Dockerfiles                                                                                       | 1      | &#9745; |
 | b     | end-to-end test objednavky (simulacia network callov a pouzite mocha)                                              | 4      | &#9745; |
 | **4** | **Kosik**                                                                                                          | SUM 5  | &#9745; |
 | a     | viac produktov                                                                                                     | 2      | &#9745; |
 | b     | viac kusov                                                                                                         | 2      | &#9745; |
 | c     | viac kusov a viac produktov                                                                                        | 1      | &#9745; |
-| SUM   |                                                                                                                    | 25     | 19      |
+| SUM   |                                                                                                                    | 25     | 20      |
  
 ## DB
 RDB: MySQL, PostgreSQL, MariaDB, ??? - povoleny wrapper sequalize, inak sa opytajte (ziadne dokumentove DB, nie sqlite)\

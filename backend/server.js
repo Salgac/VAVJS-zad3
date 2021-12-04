@@ -199,7 +199,7 @@ app.use((req, res, next) => {
 	next();
 })
 
-module.exports = app.listen(8081, () => {
+module.exports = app.listen(process.env.PORT || 8081, () => {
 	console.log("App listening!");
 
 	//init database
