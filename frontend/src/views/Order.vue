@@ -61,6 +61,18 @@ export default {
   },
   methods: {
     async sendOrder() {
+      //check form data
+      if (
+        this.customer.email == "" ||
+        this.customer.name == "" ||
+        this.customer.adress == "" ||
+        this.customer.city == "" ||
+        this.customer.postcode == ""
+      ) {
+        alert("Form fields must not be empty.");
+        return;
+      }
+
       //prepare data
       this.customer.address += " " + this.houseNumber;
       var json = {
